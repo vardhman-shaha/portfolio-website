@@ -1,9 +1,6 @@
-
 // @ts-ignore
 
 import type { NextApiRequest, NextApiResponse } from 'next';
-import nodemailer from 'nodemailer';
-
 
 type Data = {
   success: boolean;
@@ -18,8 +15,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   const { name, email, message } = req.body;
-  const nodemailer = require('nodemailer');
-
 
   // Basic validation
   if (!name || !email || !message) {
@@ -27,6 +22,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   try {
+    // Dynamically import nodemailer to bypass TypeScript's type check issues and avoid bundling it on Vercel
+    const nodemailer = require('nodemailer');
+
     // Create a Nodemailer transporter using Gmail with App Password
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -35,10 +33,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         pass: process.env.EMAIL_PASS, // Your Gmail App Password
       },
     });
-
-    // Verify the transporter configuration
-    await transporter.verify();
-    console.log('Nodemailer transporter verified successfully.');
 
     // Define email options
     const mailOptions = {
@@ -60,13 +54,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (error instanceof Error) {
       // Handle Nodemailer-specific SMTP error or network error
       const errorMessage = 'Failed to send message via SMTP.';
-
-      // Type guard to check for properties related to SMTP errors
       if ((error as any).response) {
         console.error('SMTP response:', (error as any).response);
         return res.status(500).json({ success: false, error: errorMessage });
       } else {
-        // General error handling
         return res.status(500).json({ success: false, error: error.message });
       }
     }
