@@ -1,5 +1,8 @@
 declare module 'nodemailer' {
-  const nodemailer: any;
+  import { Transporter } from 'nodemailer';
+  const nodemailer: {
+    createTransport: (...args: any[]) => Transporter;
+  };
   export default nodemailer;
 }
 
