@@ -1,34 +1,41 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
-    "skipLibCheck": true,  // Skips checking .d.ts files in node_modules, which helps with some type issues.
+    "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
-    "esModuleInterop": true, // Allows ES6 modules to interoperate with CommonJS modules.
+    "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node", // Ensures module resolution works with Node.js-style modules.
-    "resolveJsonModule": true, // Allows importing JSON files as modules.
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true, // Speeds up compilation by creating incremental build information.
+    "incremental": true,
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
     "plugins": [
       {
-        "name": "next" // Ensures Next.js-specific optimizations.
+        "name": "next"
       }
-    ],
-    "paths": {
-      "@/*": ["./*"] // Allows absolute imports based on the root directory.
-    }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "@types/**/*.d.ts",  // Include all custom type definitions in an @types folder if created.
-    "nodemailer.d.ts" // Ensures your custom declaration file is included directly if needed.
+    "@types/**/*.d.ts"
   ],
-  "exclude": ["node_modules"] // Excludes node_modules to avoid redundant type checks.
+  "exclude": [
+    "node_modules"
+  ]
 }

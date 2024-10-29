@@ -1,5 +1,9 @@
+
+// @ts-ignore
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
+
 
 type Data = {
   success: boolean;
