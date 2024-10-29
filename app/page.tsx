@@ -1,6 +1,5 @@
 "use client";
 
-
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
@@ -106,7 +105,7 @@ export default function Home() {
 /* Components for Skills, Testimonials, and Workflow */
 
 // Skill Card Component
-function SkillCard({ skill }) {
+function SkillCard({ skill }: { skill: string }) {
   return (
     <motion.div
       className="flex flex-col items-center p-4 bg-gray-900 bg-opacity-80 rounded-lg shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl"
@@ -149,7 +148,7 @@ function TestimonialsSection() {
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.8 }}
       >
-        <p className="text-xl italic text-gray-300">"{testimonials[current].text}"</p>
+        <p className="text-xl italic text-gray-300">&quot;{testimonials[current].text}&quot;</p>
         <p className="mt-4 text-lg font-bold text-cyan-400">- {testimonials[current].name}, {testimonials[current].title}</p>
       </motion.div>
     </motion.section>
@@ -165,7 +164,6 @@ function DevOpsWorkflow() {
     { title: "Deploy", description: "Containerized deployments on Kubernetes and cloud platforms." },
     { title: "Monitor", description: "Continuous monitoring to ensure uptime and performance." },
   ];
-
 
   return (
     <motion.section

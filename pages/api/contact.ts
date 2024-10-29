@@ -53,11 +53,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     if (error instanceof Error) {
       // Handle Nodemailer-specific SMTP error or network error
-      if ('response' in error) {
-        console.error('SMTP response:', (error as any).response); // Type-cast if you know it's safe here
-        return res.status(500).json({ success: false, error: 'Failed to send message via SMTP.' });
+      const errorMessage = 'Failed to send message via SMTP.';
+
+      // Type guard to check for properties related to SMTP errors
+      if ((error as any).response) {
+        console.error('SMTP response:', (error as any).response);
+        return res.status(500).json({ success: false, error: errorMessage });
       } else {
-        return res.status(500).json({ success: false, error: error.message || 'An unexpected error occurred.' });
+        // General error handling
+        return res.status(500).json({ success: false, error: error.message });
       }
     }
 

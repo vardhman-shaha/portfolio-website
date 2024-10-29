@@ -2,11 +2,8 @@
 
 "use client";
 
-<<<<<<< HEAD
 //import Link from 'next/link';
-=======
-// import Link from 'next/link';
->>>>>>> 4bb9a2e (Portfolio version 1.0)
+
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar'; // Make sure Navbar is available globally
 

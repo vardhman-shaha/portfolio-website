@@ -1,6 +1,4 @@
-// src/components/ThemeToggle.tsx
-
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 export default function ThemeToggle() {
   // Array of different moon faces
@@ -13,24 +11,27 @@ export default function ThemeToggle() {
     // Randomly select a face from the faces array on component mount
     const randomFace = faces[Math.floor(Math.random() * faces.length)];
     setFace(randomFace);
-  }, []);
+  }, [faces]);
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = () => {
     setIsDragging(true);
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     setIsDragging(false);
-  };
+  }, []);
 
-  const handleMouseMove = (e) => {
-    if (isDragging) {
-      setPosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
-    }
-  };
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (isDragging) {
+        setPosition({
+          x: e.clientX,
+          y: e.clientY,
+        });
+      }
+    },
+    [isDragging]
+  );
 
   useEffect(() => {
     if (isDragging) {
@@ -45,7 +46,7 @@ export default function ThemeToggle() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging]);
+  }, [isDragging, handleMouseMove, handleMouseUp]);
 
   return (
     <div
