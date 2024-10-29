@@ -1,5 +1,3 @@
-// pages/api/sendMessage.ts
-
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 
@@ -50,17 +48,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     console.log('Email sent:', info.messageId);
 
     return res.status(200).json({ success: true, message: 'Message sent successfully.' });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error sending email:', error);
 
-    // Determine error type and respond accordingly
-    if (error.response) {
-      // SMTP error from Nodemailer
-      console.error('SMTP response:', error.response);
-      return res.status(500).json({ success: false, error: 'Failed to send message via SMTP.' });
-    } else {
-      // Other errors (e.g., network issues)
-      return res.status(500).json({ success: false, error: 'An unexpected error occurred.' });
+    if (error instanceof Error) {
+      // Handle Nodemailer-specific SMTP error or network error
+      if ('response' in error) {
+        console.error('SMTP response:', (error as any).response); // Type-cast if you know it's safe here
+        return res.status(500).json({ success: false, error: 'Failed to send message via SMTP.' });
+      } else {
+        return res.status(500).json({ success: false, error: error.message || 'An unexpected error occurred.' });
+      }
     }
+
+    // Catch-all in case of an unknown error type
+    return res.status(500).json({ success: false, error: 'An unexpected error occurred.' });
   }
 }
