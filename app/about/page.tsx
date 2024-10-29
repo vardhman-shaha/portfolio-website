@@ -2,7 +2,7 @@
 
 "use client";
 
-import Link from 'next/link';
+//import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar'; // Make sure Navbar is available globally
 
