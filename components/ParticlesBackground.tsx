@@ -1,13 +1,14 @@
 // src/components/ParticlesBackground.tsx
 // eslint-disable-next-line
 
+// src/components/ParticlesBackground.tsx
 import { useCallback } from 'react';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 
 export default function ParticlesBackground() {
   const particlesInit = useCallback(async (engine) => {
-    // Properly initialize the tsparticles engine
+    // Correctly initialize tsparticles with the engine instance
     await loadFull(engine);
   }, []);
 
@@ -29,3 +30,4 @@ export default function ParticlesBackground() {
     </div>
   );
 }
+
