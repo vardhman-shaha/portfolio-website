@@ -1,10 +1,18 @@
 // src/components/ParticlesBackground.tsx
+import { useCallback } from 'react';
 import Particles from 'react-tsparticles';
+import { loadFull } from 'tsparticles';
 
 export default function ParticlesBackground() {
+  const particlesInit = useCallback(async (engine) => {
+    // Load the full tsparticles engine instance
+    await loadFull(engine);
+  }, []);
+
   return (
     <div className="absolute top-0 left-0 w-full h-full -z-10">
       <Particles
+        init={particlesInit}
         options={{
           fpsLimit: 60,
           particles: {
