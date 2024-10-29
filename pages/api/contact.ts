@@ -14,6 +14,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   const { name, email, message } = req.body;
+  const nodemailer = require('nodemailer');
+
 
   // Basic validation
   if (!name || !email || !message) {
