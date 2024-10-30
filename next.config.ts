@@ -1,11 +1,8 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  output: 'export', // Automatically exports the app as a static site
-  images: {
-    unoptimized: true,
-  },
-  basePath: '/portfolio-website', // Ensure this matches your GitHub repo name
+// next.config.js
+const nextConfig = {
+  output: 'export',
+  basePath: '/portfolio-website', // Replace with your repository name
+  assetPrefix: '/portfolio-website/', // Replace with your repository name
 };
 
-export default nextConfig;
+module.exports = nextConfig;
