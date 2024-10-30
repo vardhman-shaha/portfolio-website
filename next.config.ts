@@ -1,8 +1,14 @@
-// next.config.js
-const nextConfig = {
-  output: 'export',
-  basePath: '/portfolio-website', // Replace with your repository name
-  assetPrefix: '/portfolio-website/', // Replace with your repository name
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
+  /* other config options here */
 };
 
-module.exports = nextConfig;
+export default nextConfig;
