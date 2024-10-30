@@ -1,6 +1,5 @@
 "use client";
 
-import Head from 'next/head'; // Added Head import here
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
@@ -12,22 +11,6 @@ import ParticlesBackground from '@/components/ParticlesBackground';
 export default function Home() {
   return (
     <>
-
-
-
-     {/* Force desktop layout meta tag */}
-     <Head>
-        <meta
-          name="viewport"
-          content="width=1024, initial-scale=0.8, maximum-scale=0.8, minimum-scale=0.8, user-scalable=no"
-        />
-      </Head>
-      
-      {/* Main content of your website */}
-
-
-
-
       <Navbar />
       <ParticlesBackground />
       <ThemeToggle />
