@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import ThemeToggle from '@/components/ThemeToggle';
 import ParticlesBackground from '@/components/ParticlesBackground';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -23,6 +24,18 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
         >
+
+
+<Image
+    src="/images/me_professional.jpg"
+    alt="Vardhman Shaha"
+    width={200}
+    height={200}
+    className="rounded-full border-4 border-gray-500 shadow-lg"
+  />
+
+
+
           <motion.h1
             className="text-4xl sm:text-6xl font-extrabold bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-500 bg-clip-text text-transparent"
             initial={{ opacity: 0, y: -30 }}

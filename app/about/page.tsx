@@ -25,6 +25,26 @@ export default function About() {
         </motion.h1>
 
 
+
+
+  {/* Image Section */}
+  <motion.div
+          className="mt-8 w-48 h-48 relative"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 1 }}
+        >
+          <img
+            src="/images/me_professional.jpg"
+            alt="Vardhman Shaha"
+            className="rounded-full border-4 border-gray-500 shadow-lg"
+          />
+        </motion.div>
+
+
+
+
+
         {/* Introduction Section */}
         <motion.p
           className="text-lg mt-6 text-center max-w-3xl text-gray-300"
